@@ -129,12 +129,15 @@ var postInfo = function (req, res, next) { return __awaiter(void 0, void 0, void
                                         result = _a.sent();
                                         // 上传成功返回图片路径域名-域名修改成自己绑定到oss的
                                         console.log('result', result);
+                                        // let imageSrc = result.requestUrls;
+                                        // 上传之后删除本地文件
+                                        fs.unlinkSync(localFile_1);
                                         return [2 /*return*/];
                                 }
                             });
                         }).catch(function (err) {
                             // 上传之后删除本地文件
-                            // fs.unlinkSync(localFile);
+                            fs.unlinkSync(localFile_1);
                         });
                     }
                 });
@@ -164,8 +167,7 @@ var postInfo = function (req, res, next) { return __awaiter(void 0, void 0, void
             case 4: return [3 /*break*/, 6];
             case 5:
                 err_1 = _b.sent();
-                // console.log("error: ------- ", err);
-                res.status(500).json({ message: "Something went wrong" });
+                console.log("error: ------- ", err_1);
                 return [3 /*break*/, 6];
             case 6: return [2 /*return*/];
         }
@@ -180,7 +182,8 @@ var getInfo = function (req, res, next) { return __awaiter(void 0, void 0, void 
                 _a.trys.push([0, 2, , 3]);
                 console.log('Controller getInfo...');
                 return [4 /*yield*/, Form_1.default.find()
-                        .sort({ createdAt: -1 })];
+                        .sort({ createdAt: -1 })
+                        .limit(5)];
             case 1:
                 forms = _a.sent();
                 res.json(forms);
