@@ -133,6 +133,33 @@ const Form = (props) => {
     }
   );
 
+  const { data: querydata, status, refetch: getForm } = useQuery(
+    ['query-form-info'],
+    async () => {
+      return await httpClient.get(`/form?page=${1}&limit=1000`)
+    },
+    {
+      onSuccess: (res) => {
+        setPostResult({ status: 'success', res: res?.data })
+        // console.log('res',res)
+      },
+      onError: (err) => { setPostResult({ status: 'error', res: err.response?.data || err }); },
+      enabled: false,
+      staleTime: Infinity
+      // enabled: false  // 禁用查询自动运行
+      // 监听 本地 localStorage 事件
+    }
+  );
+
+  const [offlineN, setOfflineN] = useState();
+  useEffect(() => {
+    if (querydata) {
+      setOfflineN(querydata?.data?.countIsoffline)
+    }
+  }, [querydata])
+
+  // console.log('offlineN ...', offlineN)
+
   useEffect(() => {
     // console.log('useEffect postForm!!!!!!!  data.image', data?.image?.substr(0,10))
     if (data) {
@@ -316,11 +343,23 @@ const Form = (props) => {
               线上
             </label></div>
 
-            <div><label className='ml-4 inline-block text-sm'>
-              <input className='mt-2 mr-1' type='radio' value='线下' {...register("participation")}
-                onClick={() => { setIsOnline(true) }} />
-              线下
-            </label></div>
+            {offlineN >= 200 ?
+              (<div><label className='ml-4 inline-block text-sm'>
+                <input
+                  disabled={`{offlineN >= 200} ? true : false`}
+                  className='mt-2 mr-1' type='radio' value='线下' {...register("participation")}
+                  onClick={() => { setIsOnline(true) }} />(本次线下人数已满，请选择线上参会。)
+              </label>
+              </div>)
+              :
+              (<div><label className='ml-4 inline-block text-sm'>
+                <input
+                  className='mt-2 mr-1' type='radio' value='线下' {...register("participation")}
+                  onClick={() => { setIsOnline(true) }} />线下
+              </label>
+              </div>)
+
+            }
 
             {/* {!watch('files') || watch('files').length === 0 ? ( */}
             <div className='text-gray-700 font-medium mt-4'>
