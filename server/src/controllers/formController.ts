@@ -43,6 +43,7 @@ const writeData = (form: any) => {
 
 const postInfo = async (req: Request, res: Response, next: NextFunction) => {
   console.log('req.files', req.files)
+  console.log('process.env.Region', process.env.Region)
   console.log('postInfo - req.body: ', req.body)
 
   try {

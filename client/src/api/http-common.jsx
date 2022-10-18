@@ -2,8 +2,8 @@ import axios from "axios";
 import store from '../store';
 import { logout } from "../store/reducer/authSlice";
 
-export const baseURL = "http://localhost:8080/api"  // Mac 测试用的 API
-// export const baseURL = "http://39.105.169.246/api"  // 服务器在用的 API
+// export const baseURL = "http://localhost:8080/api"  // Mac 测试用的 API
+export const baseURL = "http://39.105.169.246/api"  // 服务器在用的 API
 
 const httpClient = axios.create({
   baseURL: baseURL,
