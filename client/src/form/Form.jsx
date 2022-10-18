@@ -98,6 +98,7 @@ const Form = (props) => {
   }, [filevalues])
 
   const onSubmit = async (data) => {
+    console.log('data', data)
     const formData = new FormData();
     formData.append("files", data.files[0]);
     // formData.append("name", data.name);    // formData.append("email", data.email);
