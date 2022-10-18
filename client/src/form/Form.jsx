@@ -130,7 +130,6 @@ const Form = (props) => {
     {
       onSuccess: (res) => { setPostResult({ status: 'success', res: res }) },
       onError: (err) => { setPostResult({ status: 'error', res: err.response?.data || err }); },
-      staleTime: 1000 * 60
     }
   );
 

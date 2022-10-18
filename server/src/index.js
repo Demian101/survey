@@ -48,7 +48,7 @@ app.use((0, compression_1.default)());
 app.use((0, morgan_1.default)('dev'));
 // app.use(express.json());
 app.use(express_1.default.json({ limit: '50mb' }));
-app.use(express_1.default.urlencoded({ limit: '50mb', extended: true }));
+// app.use(express.urlencoded({ limit: '50mb', extended: true }));
 // app.use(express.urlencoded({  }));
 // Routes
 app.get("/api", function (req, res) {

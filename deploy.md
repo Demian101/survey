@@ -862,6 +862,10 @@ pm2  monit  myproj   # 查看日志打印等
 
 ## 整套重新部署流程
 
+
+
+npm run build
+
 ```
 cd /home/surveyFullstack/client && npm i &&  npm run build 
 
