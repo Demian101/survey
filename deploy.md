@@ -864,6 +864,12 @@ pm2  monit  myproj   # 查看日志打印等
 
 
 
+
+
+
+
+
+
 npm run build
 
 ```

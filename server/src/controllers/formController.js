@@ -79,6 +79,7 @@ var postInfo = function (req, res, next) { return __awaiter(void 0, void 0, void
         switch (_b.label) {
             case 0:
                 console.log('req.files', req.files);
+                console.log('process.env.Region', process.env.Region);
                 console.log('postInfo - req.body: ', req.body);
                 _b.label = 1;
             case 1:
@@ -175,25 +176,42 @@ var postInfo = function (req, res, next) { return __awaiter(void 0, void 0, void
 }); };
 exports.postInfo = postInfo;
 var getInfo = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
-    var forms, err_2;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
+    var _a, _b, page, _c, limit, tmp, forms, countIsoffline, count, err_2;
+    return __generator(this, function (_d) {
+        switch (_d.label) {
             case 0:
-                _a.trys.push([0, 2, , 3]);
-                console.log('Controller getInfo...');
+                _a = req.query, _b = _a.page, page = _b === void 0 ? 1 : _b, _c = _a.limit, limit = _c === void 0 ? 10 : _c;
+                tmp = (Number(page) - 1) * Number(limit);
+                _d.label = 1;
+            case 1:
+                _d.trys.push([1, 5, , 6]);
                 return [4 /*yield*/, Form_1.default.find()
                         .sort({ createdAt: -1 })
-                        .limit(5)];
-            case 1:
-                forms = _a.sent();
-                res.json(forms);
-                return [3 /*break*/, 3];
+                        .limit(Number(limit))
+                        .skip(tmp)
+                        .exec()];
             case 2:
-                err_2 = _a.sent();
-                //  console.log("error: ------- ", err);
-                res.status(500).json({ message: "Something went wrong" });
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
+                forms = _d.sent();
+                return [4 /*yield*/, Form_1.default.countDocuments({ participation: '线下' })];
+            case 3:
+                countIsoffline = _d.sent();
+                return [4 /*yield*/, Form_1.default.countDocuments()];
+            case 4:
+                count = _d.sent();
+                // return response with posts, total pages, and current page
+                res.json({
+                    forms: forms,
+                    totalPages: Math.ceil(count / Number(limit)),
+                    currentPage: page,
+                    count: count,
+                    countIsoffline: countIsoffline
+                });
+                return [3 /*break*/, 6];
+            case 5:
+                err_2 = _d.sent();
+                console.error(err_2.message);
+                return [3 /*break*/, 6];
+            case 6: return [2 /*return*/];
         }
     });
 }); };

@@ -150,16 +150,33 @@ const postInfo = async (req: Request, res: Response, next: NextFunction) => {
 };
 
 const getInfo = async (req: Request, res: Response, next: NextFunction) => {
+  // destructure page and limit and set default values
+  const { page = 1, limit = 10 } = req.query;
+  let tmp: number = (Number(page) - 1) * Number(limit)
+
   try {
-    console.log('Controller getInfo...');
+    // execute query with page and limit values
     const forms = await Form.find()
       .sort({ createdAt: -1 })
-      .limit(5)
+      .limit(Number(limit))
+      .skip(tmp)
+      .exec();
 
-    res.json(forms);
-  } catch (err) {
-    //  console.log("error: ------- ", err);
-    res.status(500).json({ message: "Something went wrong" })
+    // 线下参会人数
+    const countIsoffline = await Form.countDocuments({ participation: '线下' });
+    // get total documents in the Posts collection  总人数
+    const count = await Form.countDocuments();
+
+    // return response with posts, total pages, and current page
+    res.json({
+      forms,
+      totalPages: Math.ceil(count / Number(limit)),
+      currentPage: page,
+      count,
+      countIsoffline
+    });
+  } catch (err: any) {
+    console.error(err.message);
   }
 };
 

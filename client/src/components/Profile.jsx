@@ -11,6 +11,7 @@ import { GiPreviousButton, GiNextButton } from "react-icons/gi";
 const Profile = () => {
   const [postResult, setPostResult] = useState({ 'status': null, 'res': null });
   const token = store.getState().auth?.token
+  const [tdata, setTdata] = useState();
   const [notes, setNotes] = useState("");
   const [toggl, setToggl] = useState(false);
   const [curid, setCurid] = useState("");
@@ -25,7 +26,7 @@ const Profile = () => {
   const { data, status, refetch: getForm } = useQuery(
     ['query-form-info', token],
     async () => {
-      return await httpClient.get(`/form?page=${curPage}&limit=4`)
+      return await httpClient.get(`/form?page=${1}&limit=4`)
     },
     {
       onSuccess: (res) => {
@@ -99,6 +100,7 @@ const Profile = () => {
       setPageNum(postResult.res.totalPages);
       setOfflineN(postResult.res.countIsoffline);
       setTotalN(postResult.res.count);
+      setTdata(postResult?.res?.forms)
     }
     console.log('curPage, pageNum', curPage, pageNum)
   }, [status])
@@ -193,7 +195,7 @@ const Profile = () => {
 
                 {/* <!-- record 1 --> */}
 
-                {postResult?.res?.forms.map(item => {
+                {tdata && (tdata.map(item => {
                   return (
                     <tr key={item._id}>
                       {/* <td className="p-2">
@@ -230,7 +232,7 @@ const Profile = () => {
                       <td> <AiFillDelete onClick={ (e) => delHandler(item._id)} /></td> */}
                     </tr>
                   )
-                })}
+                }))}
 
               </tbody>
             </table>

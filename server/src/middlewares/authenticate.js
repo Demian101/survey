@@ -47,7 +47,6 @@ var authGuard = function (req, res, next) { return __awaiter(void 0, void 0, voi
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
-                console.log('before req.user', req.user);
                 if (!(req.headers.authorization &&
                     req.headers.authorization.startsWith("Bearer"))) return [3 /*break*/, 5];
                 _b.label = 1;
@@ -77,7 +76,7 @@ var authGuard = function (req, res, next) { return __awaiter(void 0, void 0, voi
                 // req.user 是在下面的 next() 里传递给下一个中间件的。
                 // 也就是说，下一个中间件可以直接使用 req.user 来获取用户信息。
                 _a.user = _b.sent();
-                console.log('after req.user', req.user);
+                // console.log('after req.user',req.user)
                 next();
                 return [3 /*break*/, 4];
             case 3:
