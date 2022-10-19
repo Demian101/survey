@@ -26,7 +26,7 @@ const Profile = () => {
   const { data, status, refetch: getForm } = useQuery(
     ['query-form-info', token],
     async () => {
-      return await httpClient.get(`/form?page=${1}&limit=4`)
+      return await httpClient.get(`/form?page=${curPage}&limit=4`)
     },
     {
       onSuccess: (res) => {
@@ -74,7 +74,7 @@ const Profile = () => {
 
 
   const downloadExcel = (data) => {
-    // console.log('totalDATA: ', totalDATA?.data?.forms);
+    console.log('totalDATA: ', totalDATA?.data?.forms);
 
     const formdata = totalDATA?.data?.forms.map((item) => {
       const { name: 姓名, email: 邮箱, tel: 手机号, institution: 机构类型, employedInstitution: 就职单位, position
@@ -96,14 +96,18 @@ const Profile = () => {
 
   useEffect(() => {
     if (status === 'success') {
-      setCurPage(postResult.res.currentPage);
-      setPageNum(postResult.res.totalPages);
-      setOfflineN(postResult.res.countIsoffline);
-      setTotalN(postResult.res.count);
-      setTdata(postResult?.res?.forms)
+      setCurPage(postResult?.res?.currentPage);
+      setPageNum(postResult?.res?.totalPages);
+      setOfflineN(postResult?.res?.countIsoffline);
+      setTotalN(postResult?.res?.count);
+
     }
     console.log('curPage, pageNum', curPage, pageNum)
   }, [status])
+
+  useEffect(() => {
+    setTdata(postResult?.res?.forms)
+  }, [postResult?.res?.forms])
 
   let pageArr = Array.from({ length: postResult?.res?.totalPages }, (_, i) => i + 1)  // 6 页的话：[1,2,3,4,5,6]
 
