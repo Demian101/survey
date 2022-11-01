@@ -343,23 +343,14 @@ const Form = (props) => {
               线上
             </label></div>
 
-            {offlineN >= 200 ?
-              (<div><label className='ml-4 inline-block text-sm'>
+            <div>
+              <label className='ml-4 inline-block text-sm text-gray-500'>
                 <input
-                  disabled={`{offlineN >= 200} ? true : false`}
+                  disabled={true}
                   className='mt-2 mr-1' type='radio' value='线下' {...register("participation")}
-                  onClick={() => { setIsOnline(true) }} />(本次线下人数已满，请选择线上参会。)
+                  onClick={() => { setIsOnline(true) }} />线下人数已满，请选择线上参会。
               </label>
-              </div>)
-              :
-              (<div><label className='ml-4 inline-block text-sm'>
-                <input
-                  className='mt-2 mr-1' type='radio' value='线下' {...register("participation")}
-                  onClick={() => { setIsOnline(true) }} />线下
-              </label>
-              </div>)
-
-            }
+            </div>
 
             {/* {!watch('files') || watch('files').length === 0 ? ( */}
             <div className='text-gray-700 font-medium mt-4'>

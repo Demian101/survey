@@ -272,6 +272,8 @@ const Profile = () => {
                     >{value}
                     </li>
                   )
+                } else if (value > 10 && value < pageNum - 10) {
+                  return (<span>.</span>)
                 } else {
                   return (
                     <li
