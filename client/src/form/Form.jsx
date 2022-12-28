@@ -1,6 +1,5 @@
 // https://www.tonyvu.co/posts/react-hook-form-tailwind-css
-import React, { useState } from "react";
-import { useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 import httpClient, { baseURL } from "../api/http-common";
@@ -216,8 +215,8 @@ const Form = (props) => {
 
         // <h1 className='text-center text-4xl font-semibold mt-10'>Post a job</h1> 
         <>
-          <h1 className="pt-20 text-center text-3xl font-medium">2022 国际化学合成生物学</h1>
-          <h1 className="text-center text-2xl font-medium">前沿科技论坛（杭州）</h1>
+          <h1 className="pt-20 text-center text-3xl font-medium">2022合成生物学国际论坛</h1>
+          <h1 className="text-center text-2xl font-medium">报名表</h1>
 
           <form
             className='max-w-xl w-screen m-auto py-10 mt-10 px-8 border text-gray-700'  // 
@@ -346,9 +345,9 @@ const Form = (props) => {
             <div>
               <label className='ml-4 inline-block text-sm text-gray-500'>
                 <input
-                  disabled={true}
+                  // disabled={true}
                   className='mt-2 mr-1' type='radio' value='线下' {...register("participation")}
-                  onClick={() => { setIsOnline(true) }} />线下人数已满，请选择线上参会。
+                  onClick={() => { setIsOnline(true) }} />线下
               </label>
             </div>
 
@@ -368,7 +367,7 @@ const Form = (props) => {
 
             {isOnline &&
               <>
-                <label className='text-gray-700 font-medium block mt-4'>随行人数：</label>
+                {/* <label className='text-gray-700 font-medium block mt-4'>随行人数：</label>
                 <input
                   className='border-solid border-gray-300 border py-1 mt-1 px-4  w-full rounded text-gray-700'
                   type='number'
@@ -378,7 +377,7 @@ const Form = (props) => {
                   <div className='mb-3 text-normal text-red-500 '>
                     {errors?.num.message}
                   </div>
-                )}
+                )} */}
 
                 <label className='text-gray-700 font-medium block mt-4'>是否需要预定会议酒店（￥520/间）</label>
                 <p className='itelic font-thin text-gray-500 text-xs'>*注：大会报告特邀嘉宾免房费，协办企业 2 人以内免房费</p>
@@ -421,21 +420,21 @@ const Form = (props) => {
                     <label className='text-gray-700 font-medium block mt-4'>入住日期</label>
                     <input
                       type='checkbox'
-                      value='11月06日'
-                      placeholder='11月06日'
+                      value='01月06日'
+                      placeholder='01月06日'
                       {...register('checkInDate')}
                       className='mx-3'
                     />
-                    <label htmlFor=''>11月06日</label>
+                    <label htmlFor=''>01月06日</label>
 
                     <input
                       type='checkbox'
-                      value='11月07日'
-                      placeholder='11月07日'
+                      value='01月07日'
+                      placeholder='01月07日'
                       {...register('checkInDate')}
                       className='mx-3'
                     />
-                    <label htmlFor=''>11月07日</label>
+                    <label htmlFor=''>01月07日</label>
                   </>}
 
               </>}
@@ -528,7 +527,7 @@ const Form = (props) => {
 
         (
           <>
-            <h1 className="pt-20 text-center text-3xl font-medium">International Forum on Chemical Synthetic Biology (Hangzhou)</h1>
+            <h1 className="pt-20 text-center text-3xl font-medium">International Forum on Synthetic Biology (Hangzhou)</h1>
 
             <form
               className='max-w-xl m-auto py-10 mt-10 px-12 border'

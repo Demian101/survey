@@ -190,25 +190,14 @@ const MainEng = () =>{
 
 
 
-      {/* 时间表、地址 */}
-      {/* <div className='flex justify-center'>
-        <div className='pt-2'>
-          <span> <img src={calendar} className='w-4 inline pb-1' /></span>
-          <span className='text-lg text-slate-50 pt-10 ml-1'> 2022年11月06-07日  &nbsp;&nbsp;&nbsp; </span>
-        </div>
-        <div className='pt-2 pl-4'>
-          <span> <img src={location} className='w-4 inline pb-1' /></span>
-          <span className='text-lg text-slate-50 pt-10 ml-1'> 杭州龙湖皇冠假日酒店  &nbsp;&nbsp;&nbsp; </span>
-        </div>
-      </div> */}
       <div className='grid grid-cols-1 gap-1 md:flex md:justify-center'>
         <div className='pt-2 pl-10'>
           <span> <img src={calendar} className='w-4 inline pb-1' /></span>
-          <span className='text-lg text-slate-50 pt-10 ml-1'> November06-07   &nbsp;&nbsp;&nbsp; </span>
+          <span className='text-lg text-slate-50 pt-10 ml-1'> January 07th,2023   &nbsp;&nbsp;&nbsp; </span>
         </div>
         <div className='pt-2 pl-10'>
           <span> <img src={location} className='w-4 inline pb-1' /></span>
-          <span className='text-lg text-slate-50 pt-10 ml-1'> Crowne Plaza Hangzhou HEDA   &nbsp;&nbsp;&nbsp; </span>
+          <span className='text-lg text-slate-50 pt-10 ml-1'> QianTang District, Hangzhou   &nbsp;&nbsp;&nbsp; </span>
         </div>
       </div>
 
@@ -277,7 +266,7 @@ const MainEng = () =>{
       <img src={date1107} className='w-[132pt] h-[45pt] mt-2'/>
       <div>
         <span><img src={location} className='w-[12.5pt] h-[16pt] inline pb-1' /></span>
-        <span className='text-[22px] pb-8 text-slate-50 inline'> Crowne Plaza Hangzhou HEDA </span>
+        <span className='text-[22px] pb-8 text-slate-50 inline'> QianTang District, Hangzhou </span>
       </div>
       <table className="table-fixed">
         <tbody className=" text-white px-2 text-sm">
@@ -436,7 +425,7 @@ const MainEng = () =>{
         </div>
 
           <div className="text-slate-50 pt-12 font-light relative" >
-            <span className='text-2xl text-slate-50'> Crowne Plaza Hangzhou HEDA </span>
+            <span className='text-2xl text-slate-50'> QianTang District, Hangzhou </span>
             <table className="table-fixed">
               <tbody className="">
               <tr> 
@@ -598,7 +587,7 @@ const MainEng = () =>{
     <div className='grid grid-cols-4 gap-4 pl-[30px] text-gray-50 text-left pb-12'>
       <div>Venue </div>
       <div className='col-span-3'>
-        <div>Crowne Plaza Hangzhou HEDA</div>
+        <div>QianTang District, Hangzhou</div>
         <div className='text-sm'>No.523，Jinsha Avenue,HEDA,Hangzhou，310008,zhejiang,China</div>
       </div>
       <div className='flex justify-between pr-3'>
@@ -732,7 +721,7 @@ const MainEng = () =>{
         <div className='grid grid-cols-4 gap-4 pl-[30px] text-gray-50 text-left font-light mt-8 mb-10'>
           <div>Venue: </div>
           <div className='col-span-3'>
-            <div>Crowne Plaza Hangzhou HEDA</div>
+            <div>QianTang District, Hangzhou</div>
             <div className='text-sm'>No.523，Jinsha Avenue,HEDA,Hangzhou，310008,zhejiang,China</div>
           </div>
           <div className='flex justify-between pr-3'>
